@@ -1,0 +1,193 @@
+<?php 
+			$nameErr = $emailErr = $passErr ="";
+			$name = $email = $password ="";
+			function test_input($data) {
+				  $data = trim($data);
+				  $data = stripslashes($data);
+				  $data = htmlspecialchars($data);
+				  return $data;
+				}
+			
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			  if (empty($_POST["name"])) {
+			    $nameErr = "Name is required";
+			  } else {
+			    $uname = test_input($_POST["name"]);
+			    }
+			  
+			  if (empty($_POST["e-mail"])) {
+			    $emailErr = "Email is required";
+			  } else {
+			    $email = test_input($_POST["e-mail"]);
+    			}
+    			if (empty($_POST["password"])) {
+			    $passErr = "password is required";
+			  } else {
+			    $pass= test_input($_POST["password"]);
+    			}
+    			if (empty($_POST["pswd"])) {
+			    $passErr = "password is required";
+			  } else {
+			    $pass2= test_input($_POST["pswd"]);
+    			}
+    		} ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  		<title>Sign Up</title>
+  		<meta name="viewport" content="width=device-width initial-scale=1.0">
+ 		 <style>
+  				.error{color:blue;}
+  				.sinbtn{
+  					text-align:left;
+  					background:white;
+  					border: 1px solid black;
+  					padding: 5px;
+  					text-decoration:none;
+  				}
+  				.sinbtn:hover{
+  					background: black;
+  					color: white;
+  				}
+ 		 </style>
+</head>
+<body style="background-image: url('a.jpeg');text-align: center;">
+<div style="text-align: center;background:rgb(255,255,0,0.1);border: 1px solid black;padding: 10px;margin-right:20%;margin-left:20%;">
+				
+				<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>" novalidate>
+					<table>
+							<tr>
+								<td></td>
+								<td>
+									<h1 text-align=center> SIGN UP</h1>
+								</td>
+							</tr>
+					
+							<tr>
+								<td></td>
+								<td>
+									<span class="error">*-Required</span>
+								</td>
+							</tr>
+					
+							<tr>
+								<td>
+									<span>
+										User Name:
+									</span>
+								</td>
+								<td>
+									<input type="text" name="name">
+								</td>
+								<td>	
+									<span class="error">
+											*<?php echo $nameErr;?>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>
+											E-mail:
+									</span>
+								</td>
+								<td>
+									<input type="e-mail" name="e-mail">
+								</td>
+								<td>
+									<span class="error">
+											 *<?php echo $emailErr; ?>
+									</span>
+								</td>		
+							</tr>
+							<tr>
+								<td>	
+									<span>
+											Mobile Number
+									</span>
+								</td>	
+								<td>
+									<input type="text" name="Mobile_no"><br>
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									password:
+								</td>
+								<td>
+									<input type="password" name="password">
+								</td>
+								<td>
+									<span class="error">
+										*<?php echo $passErr; ?>
+									</span>
+								</td>		
+							</tr>		
+					
+							<tr>
+								<td>									
+										re-enter password: 
+								</td>
+								<td>
+									<input type="password" name="pswd"><br>
+								</td>	
+							</tr>	
+							<tr>
+								<td></td>
+								<td>	
+									<input type="submit" name="register" value="SIGN UP">
+								</td>	
+							</tr>			
+							<tr>
+								
+								<td></td>
+								<td>	
+									<p>already have and account? <a class="sinbtn" href="login.php">
+				 log in </a> </p>
+								</td>
+							</tr>
+					</table>
+				</form>
+</div>
+</body>
+</html>
+<?php
+$dbname='mydb';
+	$host='localhost';
+	$username='root';
+	$password='1234';
+try{
+	$dbcon=new PDO("mysql:host=$host;dbname=$dbname",$username,$password);
+	echo "Connected";
+	}
+	catch(PDOException $vairu){
+			echo $vairu->getMessage();
+	}
+	function regUsers($dbcon,$uname,$email,$mno,$pass){
+		$sql=$dbcon->prepare("insert into regusers(uname,email,mno,pass) values (?,?,?,?) ");
+		$values=array($uname,$email,$mno,$pass);
+		$sql->execute($values);
+		echo "Updated";
+	}
+	if(isset($_POST['register'])){
+		/*$uname=$_POST['name'];
+		$email=$_POST['e-mail'];
+		$mno=$_POST['Mobile_no'];
+		$pass=$_POST['password'];
+		$pass2=$_POST['pswd'];*/
+		$mno=$_POST['Mobile_no'];
+		if($pass!=$pass2){
+			?>
+			<script type="text/javascript">
+				alert('Password doesn\'t match');
+			</script>
+			<?php
+		}
+		else{
+			regUsers($dbcon,$uname,$email,$mno,$pass);
+		}
+	}
+
+
+	?>

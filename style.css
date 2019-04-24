@@ -1,0 +1,128 @@
+ body,html{
+            height: auto;
+            font-family: Arial;
+            margin:0;
+            background:url(3.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position:fixed;
+            background-attachment:fixed;
+            filter: alpha(opacity=50);
+
+          }
+          *{
+             box-sizing: border-box;
+             -webkit-box-sizing: border-box;
+             -moz-box-sizing: border-box;
+          }
+          h3{
+            font-size: 2em;
+            margin: 0;
+            padding:20px;
+            color:black;
+            text-align: center;
+          }
+          .wrap{
+            background: url(3.jpg);
+            min-height:100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+           opacity: 0.6;
+          }
+          .mycol{
+            width: 20%;
+            padding: 50px;
+            margin: 1%
+          }.container1{
+            position: absolute;
+            
+            margin:30px;
+            max-width:400px;
+            padding: 30px;
+            background:grey;
+            border-radius:50px; 
+          }
+         .container{
+            position: absolute;
+            right: 5px;
+            margin:20px;
+            max-width: 500px;
+            padding: 16px;
+            background:white;
+            border-radius:50px; 
+
+         }
+         
+          input[type=text],input[type=e-mail],input[type=text],input[type=password],input[type=password],input[list]{
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 22px 0;
+            border-radius: 50px;
+            background: #f1f1f1;
+            font-size: 15px;
+
+          }
+          .error{color:red;}
+          .sinbtn{
+            text-align:center;
+            background:#4caf50;
+            border: none;
+            padding: 13px 20px;
+            text-decoration:none;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            width: 100%;
+            border-radius: 50px;
+          }
+          .sinbtn:hover{
+            background: black;
+            color: white;
+            border-radius: 50px;
+          }
+          .optbtn{
+            margin-top: 15% ;
+            text-align:center;
+            margin-left: 8%;
+            margin-right: 8%;
+
+            /*float: left;*/
+          }
+           
+          .btn{
+                text-align:center;
+                background:blue;
+                border: none;
+                padding: 13px 20px;
+                text-decoration:none;
+                font-size: 16px;
+                font-weight: bold;
+                color:white;
+                width: 100%;
+                border-radius: 50px;
+            }
+          .optbtn div{
+            border-radius: 20px;
+            float:left;
+
+          }
+          .optbtn div:hover{
+            background-color: white;
+            color:white;
+            background-size: 20%
+          }
+        @media only screen and (max-width: 1156px) {
+          .optbtn div{
+            float: left;
+            width:100%;
+            height: 25%;
+            padding-top:12%; 
+            padding-bottom:12%; 
+          }
+           .optbtn div{
+           
+            min-width: 256px;
+          }
+           
+        }

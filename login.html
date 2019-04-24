@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>user login</title>
+</head>
+<body style="text-align:center;background-color:powderblue;">
+
+<form action="login.php" method="post">
+  <h1 text-align=center> LOGIN</h1>
+User Name: <input type="text" name="name"><br>
+Password: <input type="Password" name="password"><br>
+<input type="submit" name="regiser" value="Sign in">
+<p>new user <a href="sign.html" target="_blank"> sign up </a> </p>
+</form>
+</body>
+</html>
+<?php
+	$dbname='mydb';
+	$host='localhost';
+	$username='root';
+	$password='1234';
+	
+
+	try{
+	$dbcon=new PDO("mysql:host=$host;dbname=$dbname",$username,$password);
+	echo "Connected";
+	}
+	catch(PDOException $vairu){
+			echo $vairu->getMessage();
+	}
+		
+	function login($uname,$pwd){
+		$sql=$dbcon->query("select * from users where user_name=$uname AND mobile_no=$pwd");
+		$count=$sql->rowCount();
+		return $count;
+	}
+
+	if(isset($_POST['register'])){
+		$uname=$_POST['name'];
+		$pwd='$_POST['password']';
+		$c=login($uname,$pwd);
+		if($c==1){
+			echo "Vanthuchu..";
+	}else{
+		echo "corecta kudra.."
+	}
+}
+
+	/*$sql=$dbcon->query("select * from users where user_name='ras' ");
+	$res=$sql->fetchALL();
+	foreach($res as $key=>$value){
+		echo $value['mobile_no'];
+	}*/
+	//print_r($res);		
+?>
+
